@@ -22,15 +22,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach( $expertises as $expertise )
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark Otto</td>
-                    <td>1020203994</td>
-                    <td>mark@gmail.com</td>
-                    <td>Rekayasa dan Teknologi</td>
-                    <td><a href="{{ url('/kepakaran/detail/mark-otto') }}" class="badge btn-info">detail</a></td>
+                    <td>{{ $expertise->name }}</td>
+                    <td>{{ $expertise->nip }}</td>
+                    <td>{{ $expertise->email }}</td>
+                    <td>{{ $expertise->bidang_kepakaran }}</td>
+                    <td><a href="/kepakaran/detail/{{ $expertise->slug }}" class="badge btn-info">detail</a></td>
                 </tr>
-                <tr>
+                @endforeach
+                <!-- <tr>
                     <th scope="row">2</th>
                     <td>Jacob Thornton</td>
                     <td>1020200994</td>
@@ -45,7 +47,7 @@
                     <td>larry@gmail.com</td>
                     <td>Bioteknologi</td>
                     <td><a href="#" class="badge btn-info">detail</a></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </section>

@@ -48,8 +48,12 @@ class PengabdianController extends Controller
             'thumbnail' => 'mimes:jpeg,png,jpg'
         ]);
 
-        $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
-        $request->thumbnail->move(public_path('img/pengabdian'), $imgName);
+        $imgName = null;
+
+        if($request->thumbnail) {
+            $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            $request->thumbnail->move(public_path('img/pengabdian'), $imgName);
+        }
 
         CommunityService::create([
             'title' => $request->title,

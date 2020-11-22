@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Researche;
 use App\CommunityService;
 use App\Publication;
+use App\Expertise;
 use Illuminate\Support\Str;
 use Validator;
 use Auth;
@@ -65,9 +66,6 @@ class AdminController extends Controller
     public function pengabdian()
     {
         $comserv = CommunityService::orderBy('date', 'desc')->paginate(5);//Model
-        // foreach($researches as $entries){
-        //     $entries->description = Str::limit($entries->description, 200);
-        // }
         return view('/admin/adm_pengabdian', ['comserv' => $comserv]);
     }
 
@@ -75,6 +73,12 @@ class AdminController extends Controller
     {
         $publications = Publication::orderBy('date', 'desc')->paginate(5);//Model
         return view('/admin/adm_publikasi', ['publications' => $publications]);
+    }
+
+    public function kepakaran()
+    {
+        $expertises = Expertise::orderBy('created_at', 'asc')->paginate(5);//Model
+        return view('/admin/adm_kepakaran', ['expertises' => $expertises]);
     }
 
     public function logout()

@@ -191,9 +191,9 @@
                     <div class="single-pricing">
                         <div class="single-pricing-content">
                             <a href="{{ url('/pengabdian-kepada-masyarakat') }}"><h5>Pengabdian</h5></a>
-                            @foreach( $researches as $rsc )
+                            @foreach( $comserv as $cs )
                             <div >
-                                <a href="#">{{ $rsc->title }} <br><span class="span">{{ $rsc->date }} By {{ $rsc->author }}</span></a>
+                                <a href="#">{{ $cs->title }} <br><span class="span">{{ $cs->date }} By {{ $cs->author }}</span></a>
                             </div>
                             @endforeach
                         </div>

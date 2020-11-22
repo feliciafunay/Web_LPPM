@@ -1,6 +1,6 @@
 @extends('layout/admin')
     
-@section('title', 'Admin Publikasi')
+@section('title', 'Admin Kepakaran')
 
 @section('container')   
     @if(isset(Auth::user()->email))
@@ -31,6 +31,7 @@
     <section class="area-padding-top area-padding-bottom">
         <div class="container-admin">
             <a href="/admin/successlogin" class="btn btn-primary mb-3 btn-sm">Back</a>
+            
             @if (session('status'))
                 <div class='alert alert-success'>
                     {{ session('status')}}
@@ -39,17 +40,17 @@
             
             <div class="single-pricing">
                 <div class="single-pricing-content">
-                    <h5>Publikasi</h5>
-                    <a href="/admin/successlogin/publikasi/create" class="btn btn-primary mb-3 btn-sm" style="color:#fff; font-size:14px">Tambah Data</a>
+                    <h5>Kepakaran</h5>
+                    <a href="/admin/successlogin/kepakaran/create" class="btn btn-primary mb-3 btn-sm" style="color:#fff; font-size:14px">Tambah Data</a>
 
-                    @foreach( $publications as $publication )
+                    @foreach( $expertises as $expertise )
                     <div>
-                        <a href="/publikasi/{{ $publication->slug }}">{{ $publication->title }} <br><span class="span">{{ $publication->date }} By {{ $publication->author }}</span></a>
+                        <a href="/kepakaran/{{ $expertise->slug }}">{{ $expertise->name }} <br><span class="span">{{ $expertise->nip }}</span></a>
                     </div>
                     <div class="row mb-3 ml-1">
-                        <a href="/admin/successlogin/publikasi/{{ $publication->id }}/edit" class="btn btn-outline-info btn-sm mr-1" style="color:#000; font-size:10px">Edit</a>
+                        <a href="/admin/successlogin/kepakaran/{{ $expertise->id }}/edit" class="btn btn-outline-info btn-sm mr-1" style="color:#000; font-size:10px">Edit</a>
                         
-                        <form action="/admin/successlogin/publikasi/{{ $publication->id }}" method="post">
+                        <form action="/admin/successlogin/kepakaran/{{ $expertise->id }}" method="post">
                             @csrf
                             @method('DELETE') 
                             <button class="btn btn-outline-danger btn-sm" style="color:#000; font-size:10px">Delete</button>
@@ -60,7 +61,7 @@
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
                             <li class="page-item">
-                                {{ $publications->links() }}
+                                {{ $expertises->links() }}
                             </li>
                         </ul>
                     </nav>
