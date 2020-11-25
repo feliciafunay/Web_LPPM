@@ -105,19 +105,26 @@ class PublikasiController extends Controller
             'abstract' => 'required|min:2',
             'author' => 'required|min:3',
             'date' => 'required|date_format:Y-m-d',
-            'file' => 'required|mimes:pdf'
+            // 'file' => 'required|mimes:pdf'
         ]);
 
-        $fileName = $request->file->getClientOriginalName() . '-' . time() . '.' . $request->file->extension();
-        $request->file->move(public_path('download/publikasi'), $fileName);
+        // $fileName = $request->file->getClientOriginalName() . '-' . time() . '.' . $request->file->extension();
+        if($request->file){
+            $fileName = $request->file->getClientOriginalName();
+            $request->file->move(public_path('download/publikasi'), $fileName);
 
+            Publication::where('id', $publications->id)
+            ->update([
+                'file' => $fileName
+            ]);
+        }
+        
         Publication::where('id', $publications->id)
                 ->update([
                     'title' => $request->title,
                     'abstract' => $request->abstract,
                     'author' => $request->author,
                     'date' => $request->date,
-                    'file' => $fileName
                 ]);
         return redirect('/admin/successlogin/publikasi')->with('status', 'Publikasi Berhasil Diubah!');
     }
@@ -134,16 +141,16 @@ class PublikasiController extends Controller
         return redirect('/admin/successlogin/publikasi')->with('status', 'Publikasi Berhasil Dihapus!');
     }
 
-    public function getDownload()
+    public function getDownload(Publication $publications)
     {
-        // $file= public_path(). "/download/publikasi/" . $publications->file;
+        $file= public_path(). "/download/publikasi/" . $publications->file;
 
-        // $headers = [
-        //         'Content-Type: application/pdf',
-        //         ];
+        $headers = [
+                'Content-Type: application/pdf',
+                ];
 
-        // return Response::download($file, $publications->title, $headers);
-        return response()->download(public_path('download/publikasi/Pulmonary rontgen classification to detect pneumonia disease using convolutional neural networks.pdf-1605894696.pdf'));   
+        return Response::download($file, $publications->title, $headers);
+        // return response()->download(public_path('download/publikasi/'));   
 
         // fetch jurnal from database by id jurnal
 

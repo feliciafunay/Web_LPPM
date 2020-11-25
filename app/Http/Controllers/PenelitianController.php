@@ -104,11 +104,17 @@ class PenelitianController extends Controller
             'date' => 'required|date_format:Y-m-d'
         ]);
         
-        $imgName = null;
+        // $imgName = null;
 
         if($request->thumbnail) {
-            $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            $imgName = $request->thumbnail->getClientOriginalName();
             $request->thumbnail->move(public_path('img/penelitian'), $imgName);
+
+            Researche::where('id', $research->id)
+                ->update([
+                    'thumbnail' => $imgName
+                ]);
         }
 
         Researche::where('id', $research->id)
@@ -116,8 +122,7 @@ class PenelitianController extends Controller
                     'title' => $request->title,
                     'description' => $request->description,
                     'author' => $request->author,
-                    'date' => $request->date,
-                    'thumbnail' => $imgName
+                    'date' => $request->date
                 ]);
         return redirect('/admin/successlogin/penelitian')->with('status', 'Berita Penelitian Berhasil Diubah!');
     }

@@ -1,3 +1,6 @@
+@if(isset(Auth::user()->email))
+    <script>window.location="/admin/successlogin";</script>
+@endif
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
