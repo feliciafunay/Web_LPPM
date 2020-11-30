@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Researche;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class PenelitianController extends Controller
@@ -15,10 +16,20 @@ class PenelitianController extends Controller
      */
     public function index()
     {
-        $researches = Researche::orderBy('id', 'desc')->paginate(5);//Model
+        $researches = Researche::orderBy('date', 'desc')->paginate(5);//Model
+        // $date = Researche::select('date')->first();
+        // setlocale(LC_TIME, 'id_ID');
+        // Carbon::setLocale('id');
+        // Carbon::now()->formatLocalized("%A, %d %B %Y");
+
         foreach($researches as $entries){
             $entries->description = Str::limit($entries->description, 200);
+            // $entries->date = Carbon::createFromFormat('Y-m-d H:i:s', $entries->date)->year;
+            // $entries->date = date_format($entries->date, 'Y');
+            // $entries->date = Carbon::parse($date->date)->year; yg bener
+            // $date = $entries->date->isoFormat('D M Y');
         }
+        
         return view('/berita-penelitian/index', ['researches' => $researches]);
     }
 

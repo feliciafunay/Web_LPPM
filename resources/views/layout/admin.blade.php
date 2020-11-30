@@ -16,24 +16,24 @@
 </head>
 <body>
 
-    <header class="header_area">	
+    <!-- <header class="header_area">	
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container">
+                <div class="container"> -->
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="{{ url('/') }}">LPPM</a>
+                    <!-- <a class="navbar-brand logo_h" href="{{ url('/') }}">LPPM</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+                    </button> -->
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <!-- <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li> 
                             <li class="nav-item"><a class="nav-link" href="http://machung.ac.id/">Ma Chung</a></li> 
                             <li class="nav-item"><a class="nav-link" href="{{ url('/penelitian') }}">Penelitian</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/pengabdian') }}">Pengabdian</a></li> 
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/pengabdian') }}">Pengabdian</a></li>  -->
                             <!-- <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Sign In</a></li> 
                             <li class="nav-item"><a class="nav-link" href="{{ url('/download') }}">Download</a></li>  -->
                             <!-- <li class="nav-item"><a class="nav-link" href="price.html">Price</a></li>     
@@ -52,20 +52,20 @@
                                     <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                                 </ul>
                             </li>  -->
-                            <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ url('/admin/logout') }}">Logout <i class="fa fa-sign-out"></i></a></li>
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- <div class="right-button">
                         <ul>
                             <li class="shop-icon"><a href="#"><i class="ti-shopping-cart-full"></i><span>0</span></a></li>
                             <li><a class="sign_up" href="">Sign Up</a></li>
                         </ul>
                     </div>  -->
-                </div>
+                <!-- </div>
             </nav>
         </div>
-    </header>
+    </header> -->
 
     @yield('container')
 
@@ -122,5 +122,7 @@
     <script src="{{asset('js/jquery.form.js')}}"></script>
     <script src="{{asset('js/jquery.validate.min.js')}}"></script>
     <script src="{{asset('js/theme.js')}}"></script>
+
+    @yield('script')
 </body>
 </html>

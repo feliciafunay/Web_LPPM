@@ -15,7 +15,7 @@ class PengabdianController extends Controller
      */
     public function index()
     {
-        $comserv = CommunityService::orderBy('id', 'desc')->paginate(5);//Model
+        $comserv = CommunityService::orderBy('date', 'desc')->paginate(5);//Model
         foreach($comserv as $entries){
             $entries->description = Str::limit($entries->description, 200);
         }

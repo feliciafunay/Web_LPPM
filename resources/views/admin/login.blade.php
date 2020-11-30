@@ -50,7 +50,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
-                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
             </form>
         </div>
     </section>

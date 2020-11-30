@@ -7,6 +7,7 @@ use App\Researche;
 use App\CommunityService;
 use App\Publication;
 use App\Expertise;
+use App\Http\Controllers\DB;
 use Illuminate\Support\Str;
 use Validator;
 use Auth;
@@ -51,7 +52,26 @@ class AdminController extends Controller
 
     public function successlogin()
     {
-        return view('/admin/index');
+        //penelitian
+        $countR18 = \DB::table('researches')->whereYear('date', '2018')->count();
+        $countR19 = \DB::table('researches')->whereYear('date', '2019')->count();
+        $countR20 = \DB::table('researches')->whereYear('date', '2020')->count();
+
+        //pengabdian
+        $countCS18 = \DB::table('community_services')->whereYear('date', '2018')->count();
+        $countCS19 = \DB::table('community_services')->whereYear('date', '2019')->count();
+        $countCS20 = \DB::table('community_services')->whereYear('date', '2020')->count();
+
+        //publikasi
+        $countP18 = \DB::table('publications')->whereYear('date', '2018')->count();
+        $countP19 = \DB::table('publications')->whereYear('date', '2019')->count();
+        $countP20 = \DB::table('publications')->whereYear('date', '2020')->count();
+
+        // $count = Researche::where('date', 2018)->count();
+        return view('/admin/index', ['countR18' => $countR18, 'countR19' => $countR19, 'countR20' => $countR20,
+                    'countCS18' => $countCS18, 'countCS19' => $countCS19, 'countCS20' => $countCS20,
+                    'countP18' => $countP18, 'countP19' => $countP19, 'countP20' => $countP20]);
+        // return view('/admin/index');
     }
 
     public function penelitian()
@@ -151,4 +171,5 @@ class AdminController extends Controller
     {
         //
     }
+
 }
