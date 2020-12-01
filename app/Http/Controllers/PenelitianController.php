@@ -55,20 +55,29 @@ class PenelitianController extends Controller
             'title' => 'required|max:255|min:2',
             'description' => 'required|min:2',
             'author' => 'required|min:3',
-            'date' => 'required|date_format:Y-m-d',
-            'thumbnail' => 'mimes:jpeg,png,jpg'
+            'date' => 'required|date_format:Y-m-d'
         ]);
 
-        $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
-        $request->thumbnail->move(public_path('img/penelitian'), $imgName);
+        if($request->thumbnail) {
+            // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            $imgName = $request->thumbnail->getClientOriginalName();
+            $request->thumbnail->move(public_path('img/penelitian'), $imgName);
+
+            Researche::where('id', $research->id)
+                ->update([
+                    'thumbnail' => $imgName
+                ]);
+        }
+
+        // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+        // $request->thumbnail->move(public_path('img/penelitian'), $imgName);
 
         Researche::create([
             'title' => $request->title,
             'description' => $request->description,
             'author' => $request->author,
             'date' => $request->date,
-            'slug'=> Str::slug($request->title, '-'),
-            'thumbnail' => $imgName
+            'slug'=> Str::slug($request->title, '-')
         ]);
         // Researche::create($request->all());
 

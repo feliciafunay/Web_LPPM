@@ -117,12 +117,21 @@ class KepakaranController extends Controller
             'bahasa' => 'required|min:3',
             'pendidikan' => 'required|min:3',
             'pengalaman' => 'required|min:3',
-            'kegiatan' => 'required|min:3',
-            'image' => 'required|mimes:jpeg,png,jpg'
+            'kegiatan' => 'required|min:3'
         ]);
 
-        $fileName = $request->image->getClientOriginalName() . '-' . time() . '.' . $request->image->extension();
-        $request->image->move(public_path('img/kepakaran'), $fileName);
+        if($request->image) {
+            // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            $imgName = $request->image->getClientOriginalName();
+            $request->image->move(public_path('img/kepakaran'), $imgName);
+
+            Researche::where('id', $research->id)
+                ->update([
+                    'image' => $imgName
+                ]);
+        }
+        // $fileName = $request->image->getClientOriginalName() . '-' . time() . '.' . $request->image->extension();
+        // $request->image->move(public_path('img/kepakaran'), $fileName);
 
         Expertise::where('id', $expertises->id)
                 ->update([
@@ -136,8 +145,7 @@ class KepakaranController extends Controller
                     'bahasa' => $request->bahasa,
                     'pendidikan' => $request->pendidikan,
                     'pengalaman' => $request->pengalaman,
-                    'kegiatan' => $request->kegiatan,
-                    'image' => $fileName
+                    'kegiatan' => $request->kegiatan
                 ]);
         return redirect('/admin/successlogin/kepakaran')->with('status', 'Kepakaran Berhasil Diubah!');
     }

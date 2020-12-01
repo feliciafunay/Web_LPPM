@@ -44,15 +44,20 @@ class PengabdianController extends Controller
             'title' => 'required|max:255|min:2',
             'description' => 'required|min:2',
             'author' => 'required|min:3',
-            'date' => 'required|date_format:Y-m-d',
-            'thumbnail' => 'mimes:jpeg,png,jpg'
+            'date' => 'required|date_format:Y-m-d'
         ]);
 
-        $imgName = null;
+        // $imgName = null;
 
         if($request->thumbnail) {
-            $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
+            $imgName = $request->thumbnail->getClientOriginalName();
             $request->thumbnail->move(public_path('img/pengabdian'), $imgName);
+
+            CommunityService::where('id', $comserv->id)
+                ->update([
+                    'thumbnail' => $imgName
+                ]);
         }
 
         CommunityService::create([
@@ -60,8 +65,7 @@ class PengabdianController extends Controller
             'slug'=> Str::slug($request->title, '-'),
             'description' => $request->description,
             'author' => $request->author,
-            'date' => $request->date,
-            'thumbnail' => $imgName
+            'date' => $request->date
         ]);
         // CommunityService::create($request->all());
 

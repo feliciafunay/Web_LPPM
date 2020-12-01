@@ -77,22 +77,37 @@ class AdminController extends Controller
     public function penelitian()
     {
         $researches = Researche::orderBy('date', 'desc')->paginate(5);//Model
+
+        $countR18 = \DB::table('researches')->whereYear('date', '2018')->count();
+        $countR19 = \DB::table('researches')->whereYear('date', '2019')->count();
+        $countR20 = \DB::table('researches')->whereYear('date', '2020')->count();
+
         // foreach($researches as $entries){
         //     $entries->description = Str::limit($entries->description, 200);
         // }
-        return view('/admin/adm_penelitian', ['researches' => $researches]);
+        return view('/admin/adm_penelitian', ['researches' => $researches, 'countR18' => $countR18, 'countR19' => $countR19, 'countR20' => $countR20]);
     }
 
     public function pengabdian()
     {
         $comserv = CommunityService::orderBy('date', 'desc')->paginate(5);//Model
-        return view('/admin/adm_pengabdian', ['comserv' => $comserv]);
+
+        $countCS18 = \DB::table('community_services')->whereYear('date', '2018')->count();
+        $countCS19 = \DB::table('community_services')->whereYear('date', '2019')->count();
+        $countCS20 = \DB::table('community_services')->whereYear('date', '2020')->count();
+
+        return view('/admin/adm_pengabdian', ['comserv' => $comserv, 'countCS18' => $countCS18, 'countCS19' => $countCS19, 'countCS20' => $countCS20]);
     }
 
     public function publikasi()
     {
         $publications = Publication::orderBy('date', 'desc')->paginate(5);//Model
-        return view('/admin/adm_publikasi', ['publications' => $publications]);
+
+        $countP18 = \DB::table('publications')->whereYear('date', '2018')->count();
+        $countP19 = \DB::table('publications')->whereYear('date', '2019')->count();
+        $countP20 = \DB::table('publications')->whereYear('date', '2020')->count();
+
+        return view('/admin/adm_publikasi', ['publications' => $publications, 'countP18' => $countP18, 'countP19' => $countP19, 'countP20' => $countP20]);
     }
 
     public function kepakaran()

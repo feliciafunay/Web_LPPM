@@ -1,45 +1,27 @@
-@extends('layout/admin')
+@if(isset(Auth::user()->email))
+    @extends('layout/admin_dashboard')
+@else
+    <script>window.location="/admin";</script>
+@endif 
     
 @section('title', 'Admin Pengabdian')
 
-@section('container')   
+@section('main')
+    
     @if(isset(Auth::user()->email))
-        <section class="home_banner_area">
-            <div class="banner_inner d-flex align-items-center">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row">
-                        <!-- <div class="col-lg-3 offset-lg-9 col-xl-11 offset-xl-1">
-                            
-                        </div> -->
-                        <img src="../img/logo-umc.png" alt="" class="img">
-                        <div class="col-lg-3 offset-lg-9 col-xl-10 offset-xl-2">
-                            
-                            <div class="banner_content">
-                                <h3>Universitas Ma Chung</h3>
-                                <h4>LEMBAGA PENELITIAN DAN PENGABDIAN KEPADA MASYARAKAT (LPPM) <br>(Center for Research and Community Service)</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- MAIN -->
+        <div class="col">
+            <div class="mt-5">
+                <div id="chart"></div>
             </div>
-        </section>
-    @else
-        <script>window.location="/admin";</script>
-    @endif
-
-    <section class="area-padding-top area-padding-bottom">
-        <div class="container-admin">
-            <a href="/admin/successlogin" class="btn btn-primary mb-3 btn-sm">Back</a>
-            @if (session('status'))
-                <div class='alert alert-success'>
-                    {{ session('status')}}
-                </div>
-            @endif
-            
             <div class="single-pricing">
                 <div class="single-pricing-content">
                     <h5>Pengabdian</h5>
+                    @if (session('status'))
+                        <div class='alert alert-success'>
+                            {{ session('status')}}
+                        </div>
+                    @endif
                     <a href="/admin/successlogin/pengabdian/create" class="btn btn-primary mb-3 btn-sm" style="color:#fff; font-size:14px">Tambah Data</a>
 
                     @foreach( $comserv as $cs )
@@ -67,5 +49,59 @@
                 </div>
             </div>
         </div>
-    </section>
+    @else
+        <script>window.location="/admin";</script>
+    @endif
+
+    @section('script')
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+
+        <script>
+            Highcharts.chart('chart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Jumlah Berita Pengabdian, 2018-2020'
+                },
+                // subtitle: {
+                //     text: 'Source: WorldClimate.com'
+                // },
+                xAxis: {
+                    categories: [
+                        '2018',
+                        '2019',
+                        '2020'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah Berita'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Pengabdian',
+                    data: [{{$countCS18}}, {{$countCS19}}, {{$countCS20}}]
+
+                }]
+            });
+        </script>
+
+    @endsection
 @endsection

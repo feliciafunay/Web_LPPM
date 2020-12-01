@@ -10,7 +10,7 @@
     </section>
 
     <section class="pricing_area area-padding-top area-padding-bottom">
-        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <!-- <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselIndicators" data-slide-to="1"></li>
@@ -31,14 +31,33 @@
                     <img src="img/blog/main-blog/m-blog-1.jpg" class="d-block w-20 img-carousel-landscape" alt="">
                 </div>
             </div>
-            <!-- <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-                <span class="ti-angle-left" aria-hidden="true" style="margin-left:auto; color: #000"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-                <span class="ti-angle-right" aria-hidden="true" style="margin-right:auto; color: #000"></span>
-                <span class="sr-only">Next</span>
-            </a> -->
+        </div> -->
+        <div class="container">
+            <div class="card-deck">
+                <div class="card">
+                    <!-- Button trigger modal -->
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+                    <img src="img/poster/posterPancasila.jpg" class="card-img-top" alt="img">
+                    <!-- </button> -->
+                    <!-- Modal -->
+                    <!-- <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div style="width:100%">
+                                    <img src="img/poster/posterPancasila.jpg" class="card-img-top" alt="img"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="card">
+                    <img src="img/poster/posterSeminarVideography.jpg" class="card-img-top" alt="img">
+                </div>
+                <div class="card">
+                    <img src="img/poster/poster.png" class="card-img-top" alt="img">
+                </div>
+            </div>
         </div>
     </section>
         
