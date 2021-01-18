@@ -29,7 +29,10 @@
                     <td>{{ $publication->abstract }}</td>
                     <td>
                     <a href="/publikasi/{{ $publication->slug }}" class="badge btn-info">detail</a> <br>
-                    <a href="/download/publikasi/{{ $publication->file }}" class="badge btn-success">download</a></td>
+                    @if ($publication->file)
+                        <a href="/download/publikasi/{{ $publication->file }}" class="badge btn-success">download</a></td>
+                    
+                    @endif
                 </tr>
                 @endforeach
                 <!-- <tr>

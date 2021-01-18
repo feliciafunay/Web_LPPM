@@ -10,7 +10,13 @@
     
     @if(isset(Auth::user()->email))
         <!-- MAIN -->
+        
         <div class="col">
+        @if (session('status'))
+            <div class='alert alert-success'>
+                {{ session('status')}}
+            </div>
+        @endif
             <div class="mt-5">
                 <div id="chart"></div>
             </div>
@@ -123,7 +129,7 @@
                     type: 'bar'
                 },
                 title: {
-                    text: 'Diagram Jumlah Berita yang dipublish dari Tahun 2018-2020'
+                    text: 'Diagram Jumlah Berita yang dipublish dari Tahun {{$year3}}-{{$year1}}'
                 },
                 xAxis: {
                     categories: ['Penelitian', 'Pengabdian', 'Publikasi'],
@@ -167,14 +173,14 @@
                     enabled: false
                 },
                 series: [{
-                    name: 'Tahun 2018',
-                    data: [{{$countR18}}, {{$countCS18}}, {{$countP18}}]
+                    name: 'Tahun {{$year3}}',
+                    data: [{{$countR1}}, {{$countCS1}}, {{$countP1}}]
                 }, {
-                    name: 'Tahun 2019',
-                    data: [{{$countR19}}, {{$countCS19}}, {{$countP19}}]
+                    name: 'Tahun {{$year2}}',
+                    data: [{{$countR2}}, {{$countCS2}}, {{$countP2}}]
                 }, {
-                    name: 'Tahun 2020',
-                    data: [{{$countR20}}, {{$countCS20}}, {{$countP20}}]
+                    name: 'Tahun {{$year1}}',
+                    data: [{{$countR3}}, {{$countCS3}}, {{$countP3}}]
                 }]
             });
         </script>

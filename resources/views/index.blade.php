@@ -86,7 +86,7 @@
                         <a href="{{ url('/kepakaran') }}"><small>View more</small></a>
                     </div>
                 </div>
-                <div class="card">
+                <!-- <div class="card">
                     <img src="../img/blog/1.png" class="card-img-top" alt="img">
                     <div class="card-body">
                         <h5 class="card-title">Forum Komunikasi Ilmiah dan Conferences</h5>
@@ -95,9 +95,9 @@
                     <div class="card-footer">
                         <a href="{{ url('/forkomil-dan-conferences') }}"><small>View more</small></a>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="card-deck mt-4">
+            <!-- <div class="card-deck mt-4">
                 <div class="card">
                     <img src="../img/blog/2.png" class="card-img-top" alt="img">
                     <div class="card-body">
@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -190,10 +190,10 @@
                 <div class="col-sm-6 col-lg-6">
                     <div class="single-pricing">
                         <div class="single-pricing-content">
-                            <a href="{{ url('/pengabdian-kepada-masyarakat') }}"><h5>Pengabdian</h5></a>
+                            <a href="{{ url('/pengabdian') }}"><h5>Pengabdian</h5></a>
                             @foreach( $comserv as $cs )
                             <div >
-                                <a href="#">{{ $cs->title }} <br><span class="span">{{ $cs->date }} By {{ $cs->author }}</span></a>
+                                <a href="/pengabdian/{{ $cs->slug }}">{{ $cs->title }} <br><span class="span">{{ $cs->date }} By {{ $cs->author }}</span></a>
                             </div>
                             @endforeach
                         </div>

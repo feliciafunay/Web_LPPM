@@ -67,9 +67,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/forkomil-dan-conferences') }}" class="d-flex">
+                                    <!-- <a href="{{ url('/forkomil-dan-conferences') }}" class="d-flex"> -->
                                         <p>Forum Komunikasi Ilmiah dan Conferences</p>
-                                    </a>
+                                    <!-- </a> -->
                                 </li>
                             </ul>
                         </aside>
@@ -97,8 +97,8 @@
                             <div class="media post_item">
                                 <!-- <img src="img/blog/popular-post/post2.jpg" alt="post">                               -->
                                 <div class="media-body">
-                                    <a href="https://jurnal.machung.ac.id/index.php/magna">
-                                        <h5>Magna - Jurnal Management and Accounting</h5>
+                                    <a href="https://ejournal.mrcpp.machung.ac.id/index.php/ijnp">
+                                        <h5>IJNP - Indonesian Journal of Natural Pigments</h5>
                                     </a>
                                     <!-- <p>2019-11-04</p> -->
                                 </div>

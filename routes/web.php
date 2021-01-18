@@ -63,10 +63,18 @@ Route::delete('/admin/successlogin/publikasi/{publications}', 'PublikasiControll
 Route::get('/admin', 'AdminController@index');
 Route::post('/admin/checklogin', 'AdminController@checklogin');
 Route::get('/admin/successlogin', 'AdminController@successlogin');
+Route::get('/admin/{users}/edit', 'AdminController@edit');
 Route::get('/admin/successlogin/penelitian', 'AdminController@penelitian');
 Route::get('/admin/successlogin/pengabdian', 'AdminController@pengabdian');
 Route::get('/admin/successlogin/publikasi', 'AdminController@publikasi');
 Route::get('/admin/successlogin/kepakaran', 'AdminController@kepakaran');
+// Route::group(['middleware' =>  'auth'], function(){
+//     Route::get('/admin/{users}/edit', 'AdminController@edit')
+//         ->name('admin/edit');
+
+//     Route::put('/admin/update', 'AdminController@update');
+// });
+Route::put('/admin/update', 'AdminController@update');
 Route::get('/admin/logout', 'AdminController@logout');
 
 Route::get('/forkomil-dan-conferences', function () {
@@ -94,3 +102,7 @@ Route::get('/download', function () {
 //     Mail::to("felicia.funay@gmail.id")->send(new DemoEmail());
 //     return new DemoEmail();
 // });
+
+// Auth::routes();
+
+// Route::get('/admin/successlogin', 'AdminController@successlogin')->name('admin');

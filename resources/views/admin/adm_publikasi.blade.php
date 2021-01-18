@@ -61,16 +61,14 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Jumlah Publikasi, 2018-2020'
+                    text: 'Jumlah Publikasi, {{$year3}}-{{$year1}}'
                 },
                 // subtitle: {
                 //     text: 'Source: WorldClimate.com'
                 // },
                 xAxis: {
                     categories: [
-                        '2018',
-                        '2019',
-                        '2020'
+                        {{$year3}}, {{$year2}}, {{$year1}}
                     ],
                     crosshair: true
                 },
@@ -96,7 +94,7 @@
                 },
                 series: [{
                     name: 'Publikasi',
-                    data: [{{$countP18}}, {{$countP19}}, {{$countP20}}]
+                    data: [{{$countP1}}, {{$countP2}}, {{$countP3}}]
 
                 }]
             });

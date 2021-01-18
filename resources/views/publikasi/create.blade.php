@@ -31,31 +31,33 @@
     <section class="area-padding-bottom area-padding-top">
         <div class="container">
             <h2 class="mb-5">Form Tambah Publikasi</h2>
+            <p><i>* Wajib diisi</i></p>
+
             <form method="post" action="{{url( '/admin/successlogin/publikasi' )}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="title">Judul</label>
+                    <label for="title">Judul*</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Masukkan Judul Publikasi" name="title" value="{{ old('title') }}">
                 </div>
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="abstract">Abstrak</label>
+                    <label for="abstract">Abstrak*</label>
                     <textarea class="form-control @error('abstract') is-invalid @enderror" id="abstract" placeholder="Masukkan Abstrak" name="abstract" rows="10">{{ old('abstract') }}</textarea>
                 </div>
                 @error('abstract')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="author">Penulis</label>
+                    <label for="author">Penulis*</label>
                     <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" placeholder="Masukkan Nama Penulis" name="author" value="{{ old('author') }}">
                 </div>
                 @error('author')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="date">Tanggal</label>
+                    <label for="date">Tanggal*</label>
                     <input type="text" class="form-control @error('date') is-invalid @enderror" id="date" placeholder="Masukkan Tanggal Publikasi (yyyy-mm-dd)" name="date" value="{{ old('date') }}">
                 </div>
                 @error('date')

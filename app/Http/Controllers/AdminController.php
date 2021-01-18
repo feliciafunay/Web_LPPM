@@ -7,7 +7,9 @@ use App\Researche;
 use App\CommunityService;
 use App\Publication;
 use App\Expertise;
-use App\Http\Controllers\DB;
+use App\User;
+use DB;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Validator;
 use Auth;
@@ -52,62 +54,84 @@ class AdminController extends Controller
 
     public function successlogin()
     {
+        $admin = DB::table('users')->get();
+        $timestamp = Carbon::now();
+        $year1 = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp)->year;
+        $year2 = $year1 - 1;
+        $year3 = $year1 - 2;
+
         //penelitian
-        $countR18 = \DB::table('researches')->whereYear('date', '2018')->count();
-        $countR19 = \DB::table('researches')->whereYear('date', '2019')->count();
-        $countR20 = \DB::table('researches')->whereYear('date', '2020')->count();
+        $countR1 = \DB::table('researches')->whereYear('date', $year3)->count();
+        $countR2 = \DB::table('researches')->whereYear('date', $year2)->count();
+        $countR3 = \DB::table('researches')->whereYear('date', $year1)->count();
 
         //pengabdian
-        $countCS18 = \DB::table('community_services')->whereYear('date', '2018')->count();
-        $countCS19 = \DB::table('community_services')->whereYear('date', '2019')->count();
-        $countCS20 = \DB::table('community_services')->whereYear('date', '2020')->count();
+        $countCS1 = \DB::table('community_services')->whereYear('date', $year3)->count();
+        $countCS2 = \DB::table('community_services')->whereYear('date', $year2)->count();
+        $countCS3 = \DB::table('community_services')->whereYear('date', $year1)->count();
 
         //publikasi
-        $countP18 = \DB::table('publications')->whereYear('date', '2018')->count();
-        $countP19 = \DB::table('publications')->whereYear('date', '2019')->count();
-        $countP20 = \DB::table('publications')->whereYear('date', '2020')->count();
+        $countP1 = \DB::table('publications')->whereYear('date', $year3)->count();
+        $countP2 = \DB::table('publications')->whereYear('date', $year2)->count();
+        $countP3 = \DB::table('publications')->whereYear('date', $year1)->count();
 
         // $count = Researche::where('date', 2018)->count();
-        return view('/admin/index', ['countR18' => $countR18, 'countR19' => $countR19, 'countR20' => $countR20,
-                    'countCS18' => $countCS18, 'countCS19' => $countCS19, 'countCS20' => $countCS20,
-                    'countP18' => $countP18, 'countP19' => $countP19, 'countP20' => $countP20]);
+        return view('/admin/index', ['admin' => $admin, 'countR1' => $countR1, 'countR2' => $countR2, 'countR3' => $countR3,
+                    'countCS1' => $countCS1, 'countCS2' => $countCS2, 'countCS3' => $countCS3,
+                    'countP1' => $countP1, 'countP2' => $countP2, 'countP3' => $countP3,
+                    'year1' => $year1, 'year2' => $year2, 'year3' => $year3]);
         // return view('/admin/index');
     }
 
     public function penelitian()
     {
         $researches = Researche::orderBy('date', 'desc')->paginate(5);//Model
+        $timestamp = Carbon::now();
+        $year1 = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp)->year;
+        $year2 = $year1 - 1;
+        $year3 = $year1 - 2;
 
-        $countR18 = \DB::table('researches')->whereYear('date', '2018')->count();
-        $countR19 = \DB::table('researches')->whereYear('date', '2019')->count();
-        $countR20 = \DB::table('researches')->whereYear('date', '2020')->count();
+        $countR1 = \DB::table('researches')->whereYear('date', $year3)->count();
+        $countR2 = \DB::table('researches')->whereYear('date', $year2)->count();
+        $countR3 = \DB::table('researches')->whereYear('date', $year1)->count();
 
         // foreach($researches as $entries){
         //     $entries->description = Str::limit($entries->description, 200);
         // }
-        return view('/admin/adm_penelitian', ['researches' => $researches, 'countR18' => $countR18, 'countR19' => $countR19, 'countR20' => $countR20]);
+        return view('/admin/adm_penelitian', ['researches' => $researches, 'countR1' => $countR1, 'countR2' => $countR2, 'countR3' => $countR3,
+                                                'year1' => $year1, 'year2' => $year2, 'year3' => $year3]);
     }
 
     public function pengabdian()
     {
         $comserv = CommunityService::orderBy('date', 'desc')->paginate(5);//Model
+        $timestamp = Carbon::now();
+        $year1 = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp)->year;
+        $year2 = $year1 - 1;
+        $year3 = $year1 - 2;
 
-        $countCS18 = \DB::table('community_services')->whereYear('date', '2018')->count();
-        $countCS19 = \DB::table('community_services')->whereYear('date', '2019')->count();
-        $countCS20 = \DB::table('community_services')->whereYear('date', '2020')->count();
+        $countCS1 = \DB::table('community_services')->whereYear('date', $year3)->count();
+        $countCS2 = \DB::table('community_services')->whereYear('date', $year2)->count();
+        $countCS3 = \DB::table('community_services')->whereYear('date', $year1)->count();
 
-        return view('/admin/adm_pengabdian', ['comserv' => $comserv, 'countCS18' => $countCS18, 'countCS19' => $countCS19, 'countCS20' => $countCS20]);
+        return view('/admin/adm_pengabdian', ['comserv' => $comserv, 'countCS1' => $countCS1, 'countCS2' => $countCS2, 'countCS3' => $countCS3,
+                                                'year1' => $year1, 'year2' => $year2, 'year3' => $year3]);
     }
 
     public function publikasi()
     {
         $publications = Publication::orderBy('date', 'desc')->paginate(5);//Model
+        $timestamp = Carbon::now();
+        $year1 = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp)->year;
+        $year2 = $year1 - 1;
+        $year3 = $year1 - 2;
 
-        $countP18 = \DB::table('publications')->whereYear('date', '2018')->count();
-        $countP19 = \DB::table('publications')->whereYear('date', '2019')->count();
-        $countP20 = \DB::table('publications')->whereYear('date', '2020')->count();
+        $countP1 = \DB::table('publications')->whereYear('date', $year3)->count();
+        $countP2 = \DB::table('publications')->whereYear('date', $year2)->count();
+        $countP3 = \DB::table('publications')->whereYear('date', $year1)->count();
 
-        return view('/admin/adm_publikasi', ['publications' => $publications, 'countP18' => $countP18, 'countP19' => $countP19, 'countP20' => $countP20]);
+        return view('/admin/adm_publikasi', ['publications' => $publications, 'countP1' => $countP1, 'countP2' => $countP2, 'countP3' => $countP3,
+                                                'year1' => $year1, 'year2' => $year2, 'year3' => $year3]);
     }
 
     public function kepakaran()
@@ -161,7 +185,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $admin = DB::table('users')->where('id', $id)->get();
+
+        // return view('/admin/edit', ['admin' => $admin]);
     }
 
     /**
@@ -171,9 +197,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $users)
     {
-        //
+        // DB::table('users')->where('id', $request->id)->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => $request->password
+        // ]);
+        // return redirect('/admin/successlogin')->with('status', 'Data Admin Berhasil Diubah!');
     }
 
     /**

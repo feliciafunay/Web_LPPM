@@ -50,11 +50,18 @@ class PublikasiController extends Controller
             'abstract' => 'required|min:2',
             'author' => 'required|min:3',
             'date' => 'required|date_format:Y-m-d',
-            'file' => 'required|mimes:pdf'
+            // 'file' => 'required|mimes:pdf'
         ]);
+        
+        $fileName = null;
 
-        $fileName = $request->file->getClientOriginalName() . '-' . time() . '.' . $request->file->extension();
-        $request->file->move(public_path('download/publikasi'), $fileName);
+        if($request->file) {
+            $fileName = $request->file->getClientOriginalName();
+            $request->file->move(public_path('download/publikasi'), $fileName);
+        }
+
+        // $fileName = $request->file->getClientOriginalName() . '-' . time() . '.' . $request->file->extension();
+        // $request->file->move(public_path('download/publikasi'), $fileName);
 
         Publication::create([
             'title' => $request->title,

@@ -12,7 +12,7 @@
                         <!-- <div class="col-lg-3 offset-lg-9 col-xl-11 offset-xl-1">
                             
                         </div> -->
-                        <img src="../img/logo-umc.png" alt="" class="img">
+                        <img src="/img/logo-umc.png" alt="" class="img">
                         <div class="col-lg-3 offset-lg-9 col-xl-10 offset-xl-2">
                             
                             <div class="banner_content">
@@ -31,11 +31,13 @@
     <section class="area-padding-bottom area-padding-top">
         <div class="container">
             <h2 class="mb-5">Form Ubah Berita Penelitian</h2>
+            <p><i>* Wajib diisi</i></p>
+
             <form method="post" action="/admin/successlogin/penelitian/{{ $research->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="title">Judul</label>
+                    <label for="title">Judul*</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" 
                         placeholder="Masukkan Judul Berita" name="title" value="{{ old('title') ? old('title') : $research->title }}">
                 </div>
@@ -43,7 +45,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="description">Deskripsi</label>
+                    <label for="description">Deskripsi*</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" 
                     placeholder="Masukkan Deskripsi Berita" name="description" 
                     rows="10">{{ old('description') ? old('description') : $research->description }}</textarea>
@@ -52,7 +54,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="author">Penulis</label>
+                    <label for="author">Penulis*</label>
                     <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" 
                         placeholder="Masukkan Nama Penulis Berita" name="author" value="{{ old('author') ? old('author') : $research->author }}">
                 </div>
@@ -60,7 +62,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="date">Tanggal</label>
+                    <label for="date">Tanggal*</label>
                     <input type="text" class="form-control @error('date') is-invalid @enderror" id="date" 
                     placeholder="Masukkan Tanggal Berita dibuat (yyyy-mm-dd)" name="date" value="{{ old('date') ? old('date') : $research->date }}">
                 </div>

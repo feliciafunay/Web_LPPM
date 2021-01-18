@@ -31,10 +31,12 @@
     <section class="area-padding-bottom area-padding-top">
         <div class="container">
             <h2 class="mb-5">Form Tambah Kepakaran</h2>
+            <p><i>* Wajib diisi</i></p>
+
             <form method="post" action="{{url( '/admin/successlogin/kepakaran' )}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nama</label>
+                    <label for="name">Nama*</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Masukkan Nama" name="name" value="{{ old('name') }}">
                 </div>
                 @error('name')
@@ -48,7 +50,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email*</label>
                     <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan Email" name="email" value="{{ old('email') }}">
                 </div>
                 @error('email')

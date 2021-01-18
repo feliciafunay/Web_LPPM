@@ -157,16 +157,14 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Jumlah Berita Penelitian, 2018-2020'
+                    text: 'Jumlah Berita Penelitian, {{$year3}}-{{$year1}}'
                 },
                 // subtitle: {
                 //     text: 'Source: WorldClimate.com'
                 // },
                 xAxis: {
                     categories: [
-                        '2018',
-                        '2019',
-                        '2020'
+                        {{$year3}}, {{$year2}}, {{$year1}}
                     ],
                     crosshair: true
                 },
@@ -192,7 +190,7 @@
                 },
                 series: [{
                     name: 'Penelitian',
-                    data: [{{$countR18}}, {{$countR19}}, {{$countR20}}]
+                    data: [{{$countR1}}, {{$countR2}}, {{$countR3}}]
 
                 }]
             });

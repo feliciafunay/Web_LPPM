@@ -1,12 +1,9 @@
-@if(isset(Auth::user()->email))
-    <script>window.location="/admin/successlogin";</script>
-@endif
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Admin</title>
+    <title>Change Data Admin</title>
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
@@ -18,14 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-    <section class="area-padding-bottom area-padding-top">
+@if(isset(Auth::user()->email))
+   <section class="area-padding-bottom area-padding-top">
         <div class="container mx-auto" style="width:50%;">
-            <h2 class="mb-5" style="text-align:center">Login</h2>
-
-            @if(isset(Auth::user()->email))
-                <script>window.location="/admin/successlogin";</script>
-            @endif
+            <h2 class="mb-5" style="text-align:center">Update Profile</h2>            
+@else
+    <script>window.location="/admin";</script>
+@endif 
 
             @if ($message = Session::get('error'))
                 <div class="alert alert-danger alert-block">
@@ -34,11 +30,17 @@
                 </div>
             @endif
 
-            <form method="post" action="{{url( '/admin/checklogin' )}}">
+            @foreach($admin as $adm)
+            <form method="post" action="{{url( '/admin/update' )}}">
                 @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Masukkan Nama" name="name" value="{{ old('name') ? old('name') : $adm->name  }}">
+                </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan Email" name="email" value="{{ old('email') }}">
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukkan Email" name="email" value="{{ old('email') ? old('email') : $adm->email  }}">
                 </div>
                 @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -52,9 +54,10 @@
                 @enderror
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
+            @endforeach
         </div>
     </section>
     

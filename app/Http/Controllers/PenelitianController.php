@@ -58,15 +58,12 @@ class PenelitianController extends Controller
             'date' => 'required|date_format:Y-m-d'
         ]);
 
+        $imgName = null;
+
         if($request->thumbnail) {
             // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
             $imgName = $request->thumbnail->getClientOriginalName();
             $request->thumbnail->move(public_path('img/penelitian'), $imgName);
-
-            Researche::where('id', $research->id)
-                ->update([
-                    'thumbnail' => $imgName
-                ]);
         }
 
         // $imgName = $request->thumbnail->getClientOriginalName() . '-' . time() . '.' . $request->thumbnail->extension();
@@ -77,6 +74,7 @@ class PenelitianController extends Controller
             'description' => $request->description,
             'author' => $request->author,
             'date' => $request->date,
+            'thumbnail' => $imgName,
             'slug'=> Str::slug($request->title, '-')
         ]);
         // Researche::create($request->all());

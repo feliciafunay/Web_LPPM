@@ -153,20 +153,6 @@
     </div>
     <div class="col-lg-4">
         <div class="blog_right_sidebar">
-            <!-- <aside class="single_sidebar_widget search_widget">
-                <form action="#">
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search Keyword">
-                            <div class="input-group-append">
-                                <button class="btn" type="button"><i class="ti-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
-                </form>
-            </aside> -->
-
             <aside class="single_sidebar_widget post_category_widget">
                 <h4 class="widget_title">Category</h4>
                 <ul class="list cat-list">
@@ -181,9 +167,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/forkomil-dan-conferences') }}" class="d-flex">
+                        <!-- <a href="{{ url('/forkomil-dan-conferences') }}" class="d-flex"> -->
                             <p>Forum Komunikasi Ilmiah dan Conferences</p>
-                        </a>
+                        <!-- </a> -->
                     </li>
                 </ul>
             </aside>
@@ -211,8 +197,8 @@
                 <div class="media post_item">
                     <!-- <img src="img/blog/popular-post/post2.jpg" alt="post">                               -->
                     <div class="media-body">
-                        <a href="https://jurnal.machung.ac.id/index.php/magna">
-                            <h5>Magna - Jurnal Management and Accounting</h5>
+                        <a href="https://ejournal.mrcpp.machung.ac.id/index.php/ijnp">
+                            <h5>IJNP - Indonesian Journal of Natural Pigments</h5>
                         </a>
                         <!-- <p>2019-11-04</p> -->
                     </div>

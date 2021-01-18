@@ -91,7 +91,7 @@
                         <li><a href="http://sinta.ristekbrin.go.id/">SINTA</a></li>
                         <li><a href="http://simlitabmas.ristekdikti.go.id/">SIMLITABMAS</a></li>
                         <li><a href="http://semar.machung.ac.id/">SEMAR (Sistem Manajemen Abdimas dan Riset Ma Chung)</a></li>
-                        <li><a href="https://jacips.machung.ac.id/">SENAM (Seminar Nasional Pengabdian Kepada Masyarakat Ma Chung)</a></li>
+                        <li><a href="https://senam.machung.ac.id/">SENAM (Seminar Nasional Pengabdian Kepada Masyarakat Ma Chung)</a></li>
                     </ul>
                 </div>
             </div>

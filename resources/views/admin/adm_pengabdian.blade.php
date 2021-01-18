@@ -62,16 +62,14 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Jumlah Berita Pengabdian, 2018-2020'
+                    text: 'Jumlah Berita Pengabdian, {{$year3}}-{{$year1}}'
                 },
                 // subtitle: {
                 //     text: 'Source: WorldClimate.com'
                 // },
                 xAxis: {
                     categories: [
-                        '2018',
-                        '2019',
-                        '2020'
+                        {{$year3}}, {{$year2}}, {{$year1}}
                     ],
                     crosshair: true
                 },
@@ -97,7 +95,7 @@
                 },
                 series: [{
                     name: 'Pengabdian',
-                    data: [{{$countCS18}}, {{$countCS19}}, {{$countCS20}}]
+                    data: [{{$countCS1}}, {{$countCS2}}, {{$countCS3}}]
 
                 }]
             });

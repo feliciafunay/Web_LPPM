@@ -13,7 +13,7 @@
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
+                <!-- <th scope="col">#</th> -->
                 <th scope="col">Nama</th>
                 <th scope="col">NIP</th>
                 <th scope="col">Email</th>
@@ -24,11 +24,19 @@
             <tbody>
                 @foreach( $expertises as $expertise )
                 <tr>
-                    <th scope="row">1</th>
+                    <!-- <th scope="row">1</th> -->
                     <td>{{ $expertise->name }}</td>
-                    <td>{{ $expertise->nip }}</td>
+                    @if ($expertise->nip)
+                        <td>{{ $expertise->nip }}</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td>{{ $expertise->email }}</td>
-                    <td>{{ $expertise->bidang_kepakaran }}</td>
+                    @if ($expertise->bidang_kepakaran)
+                        <td>{{ $expertise->bidang_kepakaran }}</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td><a href="/kepakaran/detail/{{ $expertise->slug }}" class="badge btn-info">detail</a></td>
                 </tr>
                 @endforeach
